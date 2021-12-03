@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -15,6 +16,13 @@ import javax.persistence.*;
 @Table(name = "USER")
 @Builder
 public class User {
+
+    @ManyToMany(fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLES",
+        joinColumns = {@JoinColumn(name = "user_id")},
+        inverseJoinColumns =  {@JoinColumn(name = "role_id")})
+    Set<Role> roles;
 
     @Id
     @GeneratedValue(generator = "uuid")
