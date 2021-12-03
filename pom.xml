@@ -117,6 +117,12 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-junit</artifactId>
+            <version>1.0.0.1</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
