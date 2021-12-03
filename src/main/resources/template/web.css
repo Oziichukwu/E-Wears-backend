@@ -1,0 +1,9 @@
+.first{
+    align-content: center;
+    background-color: yellow;
+    height: 100vh;
+    width: 50vw;
+    align-items: center;
+    align-self: center;
+    align: center;
+}
