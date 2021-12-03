@@ -1,6 +1,6 @@
 package com.example.ewears.data.models;
 
-public enum Type {
-    SIMPLE,
-    FULLFIT;
+public enum Gender {
+    MALE,
+    FEMALE;
 }
