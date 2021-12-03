@@ -1,8 +1,8 @@
 package com.example.ewears.exceptions;
 
-public class RuntimeExceptioPlaceHolder extends RuntimeException {
+public class RuntimeExceptionPlaceHolder extends E_WearsException {
 
-    public RuntimeExceptioPlaceHolder(String message) {
+    public RuntimeExceptionPlaceHolder(String message) {
 
             super(message);
     }
