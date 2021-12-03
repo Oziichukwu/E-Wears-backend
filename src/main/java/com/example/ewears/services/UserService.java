@@ -5,7 +5,7 @@ import com.example.ewears.data.dtos.request.CreateUserRequest;
 import com.example.ewears.data.dtos.response.GetUserInfoResponse;
 import com.example.ewears.data.dtos.response.GetUserResponse;
 
-public interface UserService {
+public interface UserService{
 
     String createUser (CreateUserRequest createUserRequest);
 
