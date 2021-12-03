@@ -2,23 +2,21 @@ package com.example.ewears.data.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "ROLE")
 @Builder
-public class Role {
+public class Role extends DateAudit{
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -40,7 +38,12 @@ public class Role {
 
     public void addUser(User user){
         this.users.add(user);
+        user.getRoles().add(this);
+    }
 
+    public void removeUser(User user){
+        this.users.remove(user);
+        user.getRoles().remove(this);
     }
 
 }
