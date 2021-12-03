@@ -4,6 +4,7 @@ package com.example.ewears;
 import com.example.ewears.data.models.User;
 import com.example.ewears.data.repositories.UserRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,6 +20,7 @@ public class UserRepositoryTest {
 
     @Autowired
     UserRepository userRepository;
+
 
     @Test
     public void testThatNewUserWasAdded(){
@@ -45,7 +47,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testUpdate(){
-        String userId = "2b36f09b-e1a3-400b-8519-fdc6df1284c1";
+        String userId = "d6ab639d-0411-437e-b54b-d311c63a51fe";
         Optional<User> optionalUser = userRepository.findByUserId(userId);
         User user = optionalUser.get();
         user.setPassword("12345ugc");
@@ -56,12 +58,36 @@ public class UserRepositoryTest {
     }
 
     @Test
-
-    public void testGet(){
-        String userId = "2b36f09b-e1a3-400b-8519-fdc6df1284c1";
+    public void getUserByIdTest(){
+        String userId = "d6ab639d-0411-437e-b54b-d311c63a51fe";
 
         Optional<User>optionalUser = userRepository.findByUserId(userId);
 
         Assertions.assertThat(optionalUser).isPresent();
+        System.out.println(optionalUser.get());
+    }
+
+    @Test
+    public void deleteUserByIdTest(){
+
+        String userId = "e666b095-6727-4229-a4ab-35d2be2fb388";
+        userRepository.deleteById(userId);
+
+        Optional<User>optionalUser = userRepository.findByUserId(userId);
+
+        Assertions.assertThat(optionalUser).isNotPresent();
+
+    }
+
+    @Test
+    public void findUserByUserName(){
+
+        String userName = "Goodboyz";
+
+        Optional<User>optionalUser = userRepository.findByUserName(userName);
+
+        Assertions.assertThat(optionalUser).isPresent();
+
+        System.out.println(optionalUser);
     }
 }
