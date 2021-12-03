@@ -6,11 +6,14 @@ import com.example.ewears.data.dtos.response.GetUserResponse;
 import com.example.ewears.data.models.User;
 import com.example.ewears.data.repositories.UserRepository;
 import com.example.ewears.exceptions.DuplicateEmailException;
+import com.example.ewears.exceptions.ErrorResponse;
 import com.example.ewears.exceptions.RuntimeExceptionPlaceHolder;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -33,6 +36,11 @@ public class UserServiceImpl implements UserService{
     if (userRepository.existsByEmail(createUserRequest.getEmail())){
         throw new DuplicateEmailException("Email already exist!!!");
     }
+
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .uuid(UUID.randomUUID())
+                .errors(new ArrayList<>())
+                .build();
 
         User user = User.builder()
                 .firstName(createUserRequest.getFirstName())
