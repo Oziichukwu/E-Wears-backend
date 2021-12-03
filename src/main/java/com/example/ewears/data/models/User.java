@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "USER")
 @Builder
-public class User {
+public class User extends DateAudit{
 
     @ManyToMany(fetch = FetchType.EAGER,
         cascade = CascadeType.ALL)
