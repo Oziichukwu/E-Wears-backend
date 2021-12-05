@@ -1,6 +1,7 @@
 package com.example.ewears.data.dtos.request;
 
 
+import com.example.ewears.data.models.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,9 @@ public class CreateUserRequest {
     @Size(max = 40, message = "UserName length should not be greater than 40 characters")
     @Email
     private String email;
+
+    @NotBlank
+    private Gender gender;
 
 
     private List<String> roleNames;
