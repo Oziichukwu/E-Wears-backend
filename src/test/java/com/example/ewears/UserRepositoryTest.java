@@ -1,6 +1,7 @@
 package com.example.ewears;
 
 
+import com.example.ewears.data.models.Gender;
 import com.example.ewears.data.models.User;
 import com.example.ewears.data.repositories.UserRepository;
 import org.assertj.core.api.Assertions;
@@ -31,6 +32,7 @@ public class UserRepositoryTest {
                 .userName("Goodboyz")
                 .email("ukaegbu.goodnews@yahoo.com")
                 .password("456ugc")
+                .gender(Gender.MALE)
                 .build();
 
         User savedUser = userRepository.save(user);
