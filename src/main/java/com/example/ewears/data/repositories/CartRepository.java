@@ -11,4 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CartRepository extends CrudRepository<Cart, String> {
 
+    Cart findCartByUserName(String userName);
+
+    Optional<Cart> findByCartId(String cartId);
 }
