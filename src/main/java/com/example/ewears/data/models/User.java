@@ -1,16 +1,14 @@
 package com.example.ewears.data.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "USER")
@@ -48,11 +46,15 @@ public class User extends DateAudit{
     @Column(name = "CART_ID")
     private String cartId;
 
-    public User(String userName, String password, String firstName, String lastName, String email) {
+    @Column(name = "Gender")
+    private Gender gender;
+
+    public User(String userName, String password, String firstName, String lastName, String email, Gender gender) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.gender = gender;
     }
 }
