@@ -6,6 +6,8 @@ import com.example.ewears.data.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService{
 
@@ -23,6 +25,14 @@ public class RoleServiceImpl implements RoleService{
 
         Role savedRole = roleRepository.save(role);
 
-        return savedRole.getId();
+        return savedRole.getRoleId();
+    }
+
+    @Override
+    public List<Role> findAllRoles() {
+
+        List<Role>allRoles = roleRepository.findAll();
+
+        return allRoles;
     }
 }
