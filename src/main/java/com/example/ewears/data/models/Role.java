@@ -22,7 +22,7 @@ public class Role extends DateAudit{
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "ROLE_ID", updatable = false, nullable = false)
-    private String id;
+    private String roleId;
 
     @Column(name = "ROLE_NAME", nullable = false)
     private String roleName;
