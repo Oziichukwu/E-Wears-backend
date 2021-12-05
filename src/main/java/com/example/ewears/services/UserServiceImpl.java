@@ -10,6 +10,8 @@ import com.example.ewears.data.repositories.UserRepository;
 import com.example.ewears.exceptions.*;
 import com.example.ewears.exceptions.Error;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +71,7 @@ public class UserServiceImpl implements UserService{
                 .userName(createUserRequest.getUserName())
                 .password(createUserRequest.getPassword())
                 .email(createUserRequest.getEmail())
+                .gender(createUserRequest.getGender())
                 .build();
 
         User savedUser = userRepository.save(user);
@@ -118,6 +121,18 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public GetUserInfoResponse getUserInfo() {
-        return null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String userName = (String) authentication.getPrincipal();
+
+        GetUserResponse userByUserName = getUserByUserName(userName);
+
+        return GetUserInfoResponse.builder()
+                .userId(userByUserName.getUserId())
+                .userName(userByUserName.getUserName())
+                .firstName(userByUserName.getFirstName())
+                .lastName(userByUserName.getLastName())
+                .email(userByUserName.getEmail())
+                .build();
     }
 }
